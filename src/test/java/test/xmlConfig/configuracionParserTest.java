@@ -21,9 +21,9 @@ public class configuracionParserTest {
     
     @Test
     public void testFicheroEjemplo() throws JsonProcessingException {
-        String[] args = new String[]{"glpi.csv"};
+        //String[] args = new String[]{"glpi.csv"};
         File ficheroXml = new File(configuracionParserTest.class.getResource("/xmlConfig/configuracion_ejemplo.xml").getFile());
-        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,args);
+        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,"glpi.csv");
         
         System.out.println("userConfig testFicheroEjemplo");
         System.out.println(userConfig);
@@ -34,17 +34,16 @@ public class configuracionParserTest {
     }
     @Test
     public void testFicheroEjemplo_validacionDatosMal() throws JsonProcessingException {
-        String[] args = new String[]{};
+        //String[] args = new String[]{};
         File ficheroXml = new File(configuracionParserTest.class.getResource("/xmlConfig/configuracion_ejemplo_validacionDatosMal.xml").getFile());
-        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,args);
+        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,"glpi.csv");
         
         System.out.println("userConfig testFicheroEjemplo_validacionDatosMal");
         System.out.println(userConfig);
         
         //comprobamos que pase el validador 
         Set<ConstraintViolation<UserConfig>> constraintViolations = ValidatorUtil.getValidator().validate( userConfig );
-        //se esperan 5 errores
-        assertEquals(5, constraintViolations.size() );
+        assertEquals(4, constraintViolations.size() );
         
         //vemos los errores de validacion
         System.out.println("VALIDACIONES testFicheroEjemplo_validacionDatosMal(): ");

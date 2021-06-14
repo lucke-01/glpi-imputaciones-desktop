@@ -10,27 +10,27 @@ import org.apache.commons.lang3.StringUtils;
 
 public class UserConfigUtil {
     
-    public static UserConfig getUserConfig(File fileXml,String[] args) {
+    public static UserConfig getUserConfig(File fileXml,String pathFicheroImputacion) {
         UserConfig userConfig = null;
         String ficheroXmlCadena = FicheroUtil.fileToString(fileXml);
         
         XmlMapper xmlMapper = XmlUtilParser.getMainXmlMapper();
         try {
             userConfig = xmlMapper.readValue(ficheroXmlCadena, UserConfig.class);
-            estableceArgumentosUserConfig(userConfig,args);
+            estableceArgumentosUserConfig(userConfig,pathFicheroImputacion);
         } catch (JsonProcessingException ex) {
             throw new IllegalArgumentException("Error al establecer userConfig: "+ex.getMessage());
         }
         return userConfig;
     }
-    public static void estableceArgumentosUserConfig(UserConfig userConfig,String[] args) {
+    public static void estableceArgumentosUserConfig(UserConfig userConfig,String pathFicheroImputacion) {
         for (int indice = 0; indice < userConfig.getImputaciones().size(); indice++) {
             Imputacion imputacion = userConfig.getImputaciones().get(indice);
 
             //argumento ficheroImputaciones si no esta en el fichero xml
             if (StringUtils.isEmpty(imputacion.getFicheroImputaciones())) {
-                if (args != null && args.length != 0) {
-                    imputacion.setFicheroImputaciones(args[0]);
+                if (pathFicheroImputacion != null && !pathFicheroImputacion.isEmpty()) {
+                    imputacion.setFicheroImputaciones(pathFicheroImputacion);
                 }
             }
             //nombre si no esta establecido se genera

@@ -10,9 +10,9 @@ public class ProcesaFicheroImputacionTest {
     @Test
     public void testFicheroEjemplo_correcto_Abril2020() {
     	System.out.println("testFicheroEjemplo_correcto_Abril2020()");
-        String[] args = new String[]{ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_correcto_abril2021.csv").getPath()};
+        //String[] args = new String[]{ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_correcto_abril2021.csv").getPath()};
         File ficheroXml = new File(ProcesaFicheroImputacionTest.class.getResource("/xmlConfig/configuracion_correcto_abril2021.xml").getFile());
-        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,args);
+        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_correcto_abril2021.csv").getPath());
         
         //modificamos la salida de userConfig para el testing
         userConfig.setDirectorioSalida("./src/test/resources/resultadoFicheros");
@@ -23,9 +23,9 @@ public class ProcesaFicheroImputacionTest {
     @Test
     public void testFichero_faltanDias_junio2021() {
     	System.out.println("testFichero_faltanDias_junio2021()");
-        String[] args = new String[]{ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_faltanDias_junio2021.csv").getPath()};
+        //String[] args = new String[]{ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_faltanDias_junio2021.csv").getPath()};
         File ficheroXml = new File(ProcesaFicheroImputacionTest.class.getResource("/xmlConfig/configuracion_faltanDias_junio2021.xml").getFile());
-        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,args);
+        UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroXml,ProcesaFicheroImputacionTest.class.getResource("/tareasCsv/glpi_faltanDias_junio2021.csv").getPath());
         
         //modificamos la salida de userConfig para el testing
         userConfig.setDirectorioSalida("./src/test/resources/resultadoFicheros");

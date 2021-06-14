@@ -1,0 +1,48 @@
+<!--
+  Guia configuracion:
+    fechas formato: dd/MM/yyyy
+    <imputacion> -> <ficheroImputaciones>: opcional, indica el nombre del fichero csv de imputaciones para esa imputacion
+    <imputacion> -> <ficheroSalida>: opcional, indica el nombre de salida de imputacion no se especifica la extension
+    imputacion -> atributo(activo) si es true se procesara si es false no.
+-->
+<UserConfig>
+    <!-- puede haber varias imputaciones -->
+    <!--activo: si se ejecuta o no;
+        formatoMinificado: resume la informacion, por defecto false (sin implementar aun)
+        nombre: nombre de la imputacion -->
+    <imputacion activo="true" formatoMinificado="false" nombre="imputacionAbril">
+    	
+    	<!-- opcional por defecto 8 -->
+		<numeroHorasDia>8</numeroHorasDia>
+        
+        <!-- opcional: si no se especifica se buscara el fichero por parametro de consola o interface grafica -->
+        <ficheroImputaciones></ficheroImputaciones>
+        
+        <!-- opcional: si no se especifica se genera un nombre en base a fechas -->
+        <ficheroSalida></ficheroSalida>
+        
+        <!-- 
+        	campo opcional: por defecto EXCEL
+        	valores: EXCEL o CSV(aun sin implementar) 
+        -->
+        <formatoSalida>EXCEL</formatoSalida>
+        <!-- fecha inicio necesario para los calculos -->
+        <fechaInicio>01/04/2021</fechaInicio>
+        <!-- fecha fin necesario para los calculos -->
+        <fechaFin>30/04/2021</fechaFin>
+        
+        <!-- lista de dias de vacaciones -->
+        <vacaciones>
+			<dia>02/04/2021</dia>
+			<dia>05/04/2021</dia>
+			<dia>06/04/2021</dia>
+			<dia>07/04/2021</dia>
+			<dia>08/04/2021</dia>
+			<dia>09/04/2021</dia>
+        </vacaciones>
+        <!-- lista de dias festivos -->
+        <festivos>
+            <dia>01/01/2021</dia>
+        </festivos>
+    </imputacion>
+</UserConfig>
