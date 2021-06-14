@@ -1,0 +1,6 @@
+Documentacion:
+	generar jar:
+		Por algun motivo apache poi da error al generar el jar unico hay que hacer esto:
+			abrir cmd en proyeco:
+				set MAVEN_OPTS=-Xss10m
+				mvn clean install
