@@ -1,0 +1,34 @@
+<!--
+  Guia configuracion:
+    fechas formato: dd/MM/yyyy
+    <imputacion> -> <ficheroImputaciones>: opcional, indica el nombre del fichero csv de imputaciones para esa imputacion
+    <imputacion> -> <ficheroSalida>: opcional, indica el nombre de salida de imputacion no se especifica la extension
+    imputacion -> atributo(activo) si es true se procesara si es false no.
+-->
+<UserConfig>
+    <!-- opcional por defecto . (OJO no debe terminar en /) -->
+    <directorioSalida></directorioSalida>
+    <!-- puede haber varias imputaciones -->
+    <!--activo: si se ejecuta o no;
+        formatoMinificado: resume la informacion, por defecto false (sin implementar aun)  -->
+    <imputacion activo="true" formatoMinificado="false" nombre="">
+        <!-- opcional: si no se especifica se buscara el fichero por parametro de consola o interface grafica -->
+        <ficheroImputaciones></ficheroImputaciones>
+        <!-- opcional: si no se especifica se genera un nombre en base a fechas -->
+        <ficheroSalida></ficheroSalida>
+        <!-- 
+        campo opcional: por defecto EXCEL
+        valores: EXCEL o CSV(aun sin implementar) -->
+        <formatoSalida></formatoSalida>
+        <fechaInicio></fechaInicio>
+        <fechaFin></fechaFin>
+        <vacaciones>
+            <dia>03/01/2021</dia>
+            <dia>04/01/2021</dia>
+        </vacaciones>
+        <festivos>
+            <dia>10/01/2021</dia>
+            <dia>11/01/2021</dia>
+        </festivos>
+    </imputacion>
+</UserConfig>

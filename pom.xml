@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>es.alfatec</groupId>
+    <artifactId>imputaciones-desktop</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        
+        <imputaciones-util.version>1.0</imputaciones-util.version>
+        <lombok.version>1.18.20</lombok.version>
+        <slf4j-api.version>1.7.30</slf4j-api.version>
+        <junit-jupiter.version>5.8.0-M1</junit-jupiter.version>
+        <slf4j-api.version>1.7.30</slf4j-api.version>
+        <log4j2.version>2.14.1</log4j2.version>
+        <jackson-dataformat-xml.version>2.12.3</jackson-dataformat-xml.version>
+        <woodstox-core.version>6.2.6</woodstox-core.version>
+        <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
+        <jakarta.el.version>4.0.0</jakarta.el.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>es.alfatec</groupId>
+            <artifactId>imputaciones-util</artifactId>
+            <version>${imputaciones-util.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- LOGGIN -->
+        <!--tutorial https://www.baeldung.com/slf4j-with-log4j2-logback --> 
+        <!-- 
+            en este proyecto usamos log4j2-api y log4j2-core para los logs
+            podriamos usar la api de slf4 pero no
+        -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!-- 
+            binding log4j2 con slf4j
+            Puesto que nuestra libreria: es.alfatec.imputaciones-util
+            usa slf4j (siendo esto una eleccion correcta puesto que slf4j no tendra implementacion en el proyecto imputaciones-util (solo en scope de test))
+            de este modo esta libreria no nos condiciona a usar una implementacion de un logging en especifico (log4j,log4j2,loggin de java etc...)
+            Pero para poder ver los logs escritos en esta libreria necesitamos el binding aqui abajo que se encarga de crear una fachada para conectar
+            la api de slf4j a la implementacion de log4j2.
+            OJO:
+            (en el proyecto imputaciones-util se usa una implementacion del propio slf4j 
+            pero solo en entorno test para que al programar en ella veamos los logs en los test pero no ensucie el classloader de quienes usen esta libreria)
+        -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
+        <!-- END LOGGIN -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson-dataformat-xml.version}</version>
+        </dependency>
+        <!-- conversion de tipos xml (fechas etc) -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-dataformat-xml.version}</version>
+        </dependency>
+        <!-- reemplaza la implementacion de java por defecto StAX que es cuando se usa StreamXmlReader NO cuando se usa DocumentBuilder -->
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.woodstox/woodstox-core -->
+		<dependency>
+		    <groupId>com.fasterxml.woodstox</groupId>
+		    <artifactId>woodstox-core</artifactId>
+		    <version>${woodstox-core.version}</version>
+		</dependency>
+        
+        <!-- implementacion de javax.validation para validar objetos java (notnull etc) -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
+        <!-- jakarta EL (expresion language) necesario por hibernate-validator -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>${jakarta.el.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.txt</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*.txt</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                    <include>**/*.csv</include>
+                    <include>**/*.json</include>
+                </includes>
+            </testResource>
+        </testResources>
+    </build>
+</project>

@@ -1,0 +1,27 @@
+<UserConfig>
+    <!-- opcional por defecto . (OJO no debe terminar en /) -->
+    <directorioSalida></directorioSalida>
+    <!-- puede haber varias imputaciones -->
+    <!--activo: si se ejecuta o no;
+        formatoMinificado: resume la informacion, por defecto false (sin implementar aun)  -->
+    <imputacion activo="true" formatoMinificado="false" nombre="imputacionJunio">
+        <!-- opcional: si no se especifica se buscara el fichero por parametro de consola o interface grafica -->
+        <ficheroImputaciones></ficheroImputaciones>
+        <!-- opcional: si no se especifica se genera un nombre en base a fechas -->
+        <ficheroSalida></ficheroSalida>
+        <!-- 
+        campo opcional: por defecto EXCEL
+        valores: EXCEL o CSV(aun sin implementar) -->
+        <formatoSalida>EXCEL</formatoSalida>
+        <fechaInicio>01/06/2021</fechaInicio>
+        <fechaFin>30/06/2021</fechaFin>
+        <vacaciones>
+            <dia>28/06/2021</dia>
+            <dia>29/06/2021</dia>
+            <dia>30/06/2021</dia>
+        </vacaciones>
+        <festivos>
+            <dia>09/06/2021</dia>
+        </festivos>
+    </imputacion>
+</UserConfig>
