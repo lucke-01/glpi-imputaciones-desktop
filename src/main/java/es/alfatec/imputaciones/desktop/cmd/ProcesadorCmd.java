@@ -29,10 +29,7 @@ public class ProcesadorCmd {
 	}
 	
 	public void procesaFicheroCsv() {
-		System.out.println("testFichero_faltanDias_junio2021()");
-        
         UserConfig userConfig = UserConfigUtil.getUserConfig(ficheroConfiguracionXml,rutaFicheroCsv);
-        
         
         ProcesadorImputaciones procesadorImputaciones = new ProcesadorImputaciones(userConfig);
         procesadorImputaciones.procesarImputaciones();

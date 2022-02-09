@@ -11,7 +11,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         
-        <imputaciones-util.version>1.0</imputaciones-util.version>
+        <imputaciones-util.version>1.1</imputaciones-util.version>
         <lombok.version>1.18.20</lombok.version>
         <slf4j-api.version>1.7.30</slf4j-api.version>
         <junit-jupiter.version>5.8.0-M1</junit-jupiter.version>
@@ -26,7 +26,7 @@
     <dependencies>
         <dependency>
             <groupId>es.alfatec</groupId>
-            <artifactId>imputaciones-util</artifactId>
+            <artifactId>imputaciones-core</artifactId>
             <version>${imputaciones-util.version}</version>
         </dependency>
         

@@ -1,6 +1,10 @@
 Documentacion:
 	generar jar:
 		Por algun motivo apache poi da error al generar el jar unico hay que hacer esto:
-			abrir cmd en proyeco:
-				set MAVEN_OPTS=-Xss10m
-				mvn clean install
+			OPCION CMD
+				abrir cmd en proyeco:
+					set MAVEN_OPTS=-Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Xss10m
+					mvn clean install
+			OPCION editor:
+				establecer estos parametros de ejecucion al ejecutar maven en eclipse o netbeans:
+					-Dorg.slf4j.simpleLogger.defaultLogLevel=warn -Xss10m

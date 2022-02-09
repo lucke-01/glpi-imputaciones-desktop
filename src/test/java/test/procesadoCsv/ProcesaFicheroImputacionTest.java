@@ -4,9 +4,12 @@ import es.alfatec.imputaciones.desktop.core.ProcesadorImputaciones;
 import es.alfatec.imputaciones.desktop.modelo.userConfig.UserConfig;
 import es.alfatec.imputaciones.desktop.util.UserConfigUtil;
 import java.io.File;
+
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class ProcesaFicheroImputacionTest {
+	@Order(1)
     @Test
     public void testFicheroEjemplo_correcto_Abril2020() {
     	System.out.println("testFicheroEjemplo_correcto_Abril2020()");
@@ -20,6 +23,7 @@ public class ProcesaFicheroImputacionTest {
         ProcesadorImputaciones procesadorImputaciones = new ProcesadorImputaciones(userConfig);
         procesadorImputaciones.procesarImputaciones();
     }
+	@Order(2)
     @Test
     public void testFichero_faltanDias_junio2021() {
     	System.out.println("testFichero_faltanDias_junio2021()");
